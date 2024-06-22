@@ -5,9 +5,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
+        <div class="brand">
+            <img src="assets/img/brand/logoBiru.png" class="navbar-brand" alt="..." style="height:5rem">
+        </div>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
@@ -83,6 +83,38 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home2') }}">
+                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard2') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-single-02" style="color: #003285;"></i>
+                        <span class="nav-link-text" style="color: #003285;">{{ __('Pengguna') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="navbar-examples">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Guru') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Siswa') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Orangtua') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fab fa-laravel" style="color: #f4645f;"></i>
