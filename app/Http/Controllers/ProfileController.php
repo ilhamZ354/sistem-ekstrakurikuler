@@ -32,7 +32,9 @@ class ProfileController extends Controller
 
         auth()->user()->update($request->all());
 
-        return back()->withStatus(__('Profile successfully updated.'));
+        $data = $request->all();
+
+        return back()->withStatus(__('Berhasil melakukan update data pribadi'));
     }
 
     /**

@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'level' => 'admin',
             'lastSeen' => now(),
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }

@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
                 'required', 'email', Rule::unique((new User)->getTable())->ignore($this->route()->user->id ?? null)
             ],
             'username' => [
-                'required', 'username', Rule::unique((new User)->getTable())->ignore($this->route()->user->id ?? null)
+                'required', 'min:5',
             ],
             'password' => [
                 $this->route()->user ? 'nullable' : 'required', 'confirmed', 'min:6'
