@@ -8,7 +8,6 @@
         <div class="col">
             <div class="col mb-2">
                 <button type="button" class="btn bg-transparent border border-white rounded-pill text-white"  data-bs-toggle="modal" data-bs-target="#inputModal">Tambah data</button>
-                
                 <!-- Modal -->
                 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -57,7 +56,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
+                                    <th scope="col">NISN</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Password</th>
                                     <th scope="col" class="marginRight:0">
