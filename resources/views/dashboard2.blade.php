@@ -3,7 +3,7 @@
 @section('content')
     @include('users.partials.header', [
         'title' => __('Hello') . ' '. auth()->user()->name,
-        'description' => __('Selamat datang di sistem manajemen esktrakurikuler SMP IT ALKAFFAH'),
+        'description' => __('Selamat datang di sistem manajemen ekstrakurikuler SMP IT ALKAFFAH'),
         'class' => 'col-lg-7'
     ])   
 
