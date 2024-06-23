@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SiswasController extends Controller
 {
@@ -14,7 +15,8 @@ class SiswasController extends Controller
      */
     public function index()
     {
-        //
+        $data = Siswas::paginate(5);
+        return view('layouts.siswa.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +26,7 @@ class SiswasController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.siswa.input');
     }
 
     /**
@@ -35,7 +37,26 @@ class SiswasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|min:3',
+            'username' => 'required|string|min:5|unique:users,username',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:5',
+            'kelas' => 'required|string',
+            'kode' => 'required|string|min:2',
+        ]);
+
+        Siswas::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'kelas' => $request->kelas,
+            'kode' => $request->kode,
+            'lastSeen' => null
+        ]);
+
+        return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil ditambahkan.');
     }
 
     /**
@@ -55,9 +76,9 @@ class SiswasController extends Controller
      * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Siswas $siswas)
+    public function edit(Siswas $siswa)
     {
-        //
+        return view('layouts.siswa.edit',compact('siswa'));
     }
 
     /**
@@ -67,9 +88,28 @@ class SiswasController extends Controller
      * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswas $siswas)
+    public function update(Request $request, Siswas $siswa)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|min:3',
+            'username' => 'required|string|min:5|unique:users,username',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:5',
+            'kelas' => 'required|string',
+            'kode' => 'required|string|min:2',
+            'password' => 'nullable|string|min:5',
+        ]);
+
+        $input = $request->except(['password']);
+
+        if ($request->filled('password')) {
+            $input['password'] = Hash::make($request->password);
+        }
+
+        $siswa->update($input);
+
+        return redirect()->route('siswa.index')
+                        ->with('success', 'Data siswa berhasil diperbaiki');
     }
 
     /**
@@ -78,8 +118,11 @@ class SiswasController extends Controller
      * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Siswas $siswas)
+    public function destroy(Siswas $siswa)
     {
-        //
+        $siswa->delete();
+    
+        return redirect()->route('siswa.index')
+                        ->with('success','Siswa telah dihapus ');
     }
 }

@@ -62,9 +62,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Simpan') }}
-                            </button>
+                            <a href="{{ route('guru.index') }}" class="btn btn-secondary">
+                                {{ __('Kembali') }}
+                                </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Simpan') }}
+                                    </button>
                         </div>
                     </form>
                 </div>

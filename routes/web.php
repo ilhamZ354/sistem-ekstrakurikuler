@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\OrangtuaController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -27,7 +26,7 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('guru', GuruController::class);
-	Route::resource('siswa', SiswaController::class);
+	Route::resource('siswa', SiswasController::class);
 	Route::resource('orangtua', OrangtuaController::class);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

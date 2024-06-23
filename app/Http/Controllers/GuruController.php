@@ -84,7 +84,7 @@ class GuruController extends Controller
             'name' => 'required|string|min:3',
             'username' => 'required|string|min:5',
             'email' => 'required|string|email|max:255',
-            'password' => 'nullable|string|min:8',
+            'password' => 'nullable|string|min:5',
         ]);
 
         $input = $request->except(['password']);
