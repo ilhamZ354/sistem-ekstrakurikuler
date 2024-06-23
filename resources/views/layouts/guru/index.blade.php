@@ -34,79 +34,40 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
+                                    <th scope="col">No</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Password</th>
+                                    <th scope="col">Terakhir dilihat</th>
                                     <th scope="col" class="marginRight:0">
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="list">
+                            @foreach ($data as $key => $value)
                             <tr>
-                                <th scope="row">Andi</th>
-                                <td>9012812922</td>
-                                <td>andi@gmail.com</td>
-                                <td>andi123</td>
-                                <td>
-                                    <button type="button" class="btn btn-dark"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-warning"><i class="fas fa-trash"></i></button>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $value->name }}</td>
+                                <td>{{ $value->username }}</td>
+                                <td>{{ $value->email }}</td>
+                                <td>{{ $value->lastSeen }}</td>
+                                <td class="text-right">
+                                <div class="dropdown">
+                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="{{ route('guru.edit',$value->id) }}">Edit</a>
+                                    <form action="{{ route('guru.destroy',$value->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')  
+                                    <button type="submit" class="dropdown-item">Delete</button>
+                                    </form>
+                                    </div>
+                                </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">Budi</th>
-                                <td>9012812923</td>
-                                <td>budi@gmail.com</td>
-                                <td>budi123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Cici</th>
-                                <td>9012812924</td>
-                                <td>cici@gmail.com</td>
-                                <td>cici123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Dodi</th>
-                                <td>9012812925</td>
-                                <td>dodi@gmail.com</td>
-                                <td>dodi123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Edi</th>
-                                <td>9012812926</td>
-                                <td>edi@gmail.com</td>
-                                <td>edi123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Fani</th>
-                                <td>9012812927</td>
-                                <td>fani@gmail.com</td>
-                                <td>fani123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Gina</th>
-                                <td>9012812928</td>
-                                <td>gina@gmail.com</td>
-                                <td>gina123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Hani</th>
-                                <td>9012812929</td>
-                                <td>hani@gmail.com</td>
-                                <td>hani123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Iwan</th>
-                                <td>9012812930</td>
-                                <td>iwan@gmail.com</td>
-                                <td>iwan123</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Joni</th>
-                                <td>9012812931</td>
-                                <td>joni@gmail.com</td>
-                                <td>joni123</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

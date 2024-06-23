@@ -15,7 +15,9 @@ class GuruController extends Controller
      */
 
     public function index(){
-        return view('layouts.guru.index');
+
+        $data = User::where('level', 'guru')->get();
+        return view('layouts.guru.index', compact('data'))->with('i');
     }
 
         /**
@@ -38,8 +40,8 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username',
+            'name' => 'required|string|min:3',
+            'username' => 'required|string|min:5|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:5',
         ]);
@@ -50,10 +52,50 @@ class GuruController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'level' => 'guru',
-            'lastSeen' => now()
+            'lastSeen' => null
         ]);
 
-        // Redirect kembali dengan pesan sukses
         return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan.');
+    }
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $guru)
+    {
+        return view('layouts.guru.edit',compact('guru'));
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $guru)
+    {
+
+
+        $request->validate([
+            'name' => 'required|string|min:3',
+            'username' => 'required|string|min:5',
+            'email' => 'required|string|email|max:255',
+            'password' => 'nullable|string|min:8',
+        ]);
+
+        $input = $request->except(['password']);
+
+        if ($request->filled('password')) {
+            $input['password'] = Hash::make($request->password);
+        }
+
+        $guru->update($input);
+
+        return redirect()->route('guru.index')
+                        ->with('success', 'Data guru berhasil diperbaiki');
     }
 }
