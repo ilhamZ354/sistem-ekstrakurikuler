@@ -13,6 +13,7 @@ class Orangtua extends Model
         'nama',
         'email',
         'username',
+        'siswa_id',
         'no_wa',
         'password',
         'kodeSiswa',
