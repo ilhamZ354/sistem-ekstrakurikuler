@@ -16,8 +16,8 @@ class GuruController extends Controller
 
     public function index(){
 
-        $data = User::where('level', 'guru')->get();
-        return view('layouts.guru.index', compact('data'))->with('i');
+        $data = User::where('level', 'guru')->paginate(5);
+        return view('layouts.guru.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 5);
     }
 
         /**
@@ -97,5 +97,19 @@ class GuruController extends Controller
 
         return redirect()->route('guru.index')
                         ->with('success', 'Data guru berhasil diperbaiki');
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $guru)
+    {
+        $guru->delete();
+    
+        return redirect()->route('guru.index')
+                        ->with('success','Guru telah dihapus ');
     }
 }

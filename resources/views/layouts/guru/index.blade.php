@@ -16,17 +16,6 @@
                 <div class="col">
                     <h3 class="mb-0">Data guru</h3>
                 </div>
-                <div class="col text-right">
-                    <div class="d-flex justify-content-end align-items-center">
-                        <div class="form-check mr-3">
-                            <input class="form-check-input mt-2" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Select all
-                            </label>
-                                    </div>
-                                    <Button type="submit" class="btn btn-info">Hapus</Button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="table-responsive" style="max-height: 520px;">
@@ -72,25 +61,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                    <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                        <a class="page-link" href="javascript:;" tabindex="-1">
-                            <i class="fa fa-angle-left"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="javascript:;">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="javascript:;">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:;">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="javascript:;">
-                            <i class="fa fa-angle-right"></i>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        </li>
-                    </ul>
-                    </nav>
+                        {{ $data->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

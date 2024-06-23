@@ -61,10 +61,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Simpan') }}
-                            </button>
-                        </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="{{ route('guru.index') }}" class="btn btn-primary">
+                                            {{ __('Kembali') }}
+                                        </a>
+                                        <button type="submit" class="btn btn-info">
+                                            {{ __('Simpan') }}
+                                        </button>
+                                    </div>
+                                </div>
                     </form>
                 </div>
             </div>
