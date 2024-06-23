@@ -19,6 +19,7 @@ class CreateSiswasTable extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->rememberToken();
             $table->string('kelas');
             $table->string('kode');
             $table->dateTime('lastSeen');

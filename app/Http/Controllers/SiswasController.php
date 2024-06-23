@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswas;
 use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class SiswasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,10 +41,10 @@ class SiswaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Siswas $siswas)
     {
         //
     }
@@ -51,10 +52,10 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Siswas $siswas)
     {
         //
     }
@@ -63,10 +64,10 @@ class SiswaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Siswas $siswas)
     {
         //
     }
@@ -74,10 +75,10 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Siswas  $siswas
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Siswas $siswas)
     {
         //
     }
