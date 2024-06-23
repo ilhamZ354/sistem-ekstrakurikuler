@@ -20,18 +20,20 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="nama" class="form-label">{{ __('Nama') }}</label>
-                            <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autofocus>
-                            @error('nama')
+                            <label for="name" class="form-label">{{ __('Name') }}</label>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
 
+                        <input type="hidden" name="level" id="level" value="guru">
+
                         <div class="mb-3">
-                            <label for="nip" class="form-label">{{ __('NIP') }}</label>
-                            <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip') }}" required>
+                            <label for="username" class="form-label">{{ __('NIP') }}</label>
+                            <input id="username" type="text" class="form-control @error('nip') is-invalid @enderror" name="username" value="{{ old('username') }}" required>
                             @error('nip')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

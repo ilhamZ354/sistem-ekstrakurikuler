@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <div class="brand">
-            <img src="assets/img/brand/logoBiru.png" class="navbar-brand" alt="..." style="height:5rem">
+            <img src="{{ asset('argon') }}/img/brand/logoBiru.png" class="navbar-brand" alt="..." style="height:5rem">
         </div>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
