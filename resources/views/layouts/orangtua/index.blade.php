@@ -38,13 +38,14 @@
                             <tbody class="list">
                             @foreach ($data as $key => $value)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $value->nama }}</td>
+                                <td>{{ $value->username }}</td>
+                                <td>{{ $value->email }}</td>
+                                <td>{{ $value->email }}</td>
+                                <td>{{ $value->siswa_nama }}</td>
+                                <td>{{ $value->kodeSiswa }}</td>
+                                <td>{{ $value->lastSeen }}</td>
                                 <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

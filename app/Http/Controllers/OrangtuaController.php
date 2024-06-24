@@ -17,13 +17,11 @@ class OrangtuaController extends Controller
      */
     public function index()
     {
-        // Query untuk mengambil data dari tabel orangtuas dan siswas
         $data = DB::table('orangtuas')
             ->leftJoin('siswas', 'orangtuas.siswa_id', '=', 'siswas.id')
             ->select('orangtuas.*', 'siswas.nama as siswa_nama', 'siswas.id as siswa_id')
             ->paginate(15);
     
-        // Mengembalikan view dengan data yang sudah diambil
         return view('layouts.orangtua.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 15); 
     }
@@ -51,7 +49,7 @@ class OrangtuaController extends Controller
         $request->validate([
             'nama' => 'required|string|min:3',
             'username' => 'required|string|min:5',
-            'email' => 'required|string|email|max:255|unique:users,email',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:5',
             'no_wa' => 'required|string|min:10',
             'siswa' => 'required|min:1',
@@ -87,12 +85,14 @@ class OrangtuaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $orangtua
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Orangtua $orangtua)
     {
-        //
+        $siswa = Siswas::all();
+        $namaSiswa = Siswas::where('id', $orangtua->siswa_id)->first();
+        return view('layouts.orangtua.edit', compact('orangtua', 'siswa', 'namaSiswa'));
     }
 
     /**
@@ -102,9 +102,32 @@ class OrangtuaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Orangtua $orangtua)
     {
-        //
+        // return $request;
+        $request->validate([
+            'nama' => 'required|string|min:3',
+            'username' => 'required|string|min:5',
+            'email' => 'required|string|email|max:255',
+            'no_wa' => 'required|string|min:10',
+            'siswa' => 'required|min:1',
+        ]);
+
+        $siswa = Siswas::where('id', $request->siswa)->first();
+
+        $input = $request->except(['password']);
+
+        $input['kodeSiswa'] = $siswa->kode;
+        $input['siswa_id'] = $request->siswa;
+
+        if ($request->filled('password')) {
+            $input['password'] = Hash::make($request->password);
+        }
+
+        $orangtua->update($input);
+
+        return redirect()->route('orangtua.index')
+                        ->with('success', 'Data orangtua berhasil diperbaiki');
     }
 
     /**
@@ -113,8 +136,11 @@ class OrangtuaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Orangtua $orangtua)
     {
-        //
+        $orangtua->delete();
+    
+        return redirect()->route('orangtua.index')
+                        ->with('success','Orangtua telah dihapus ');
     }
 }
