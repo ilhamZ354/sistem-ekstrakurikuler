@@ -17,7 +17,7 @@ class GuruController extends Controller
     public function index(){
 
         $data = User::where('level', 'guru')->paginate(5);
-        return view('layouts.guru.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 5);
+        return view('layouts.guru.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
         /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orangtua;
 use App\Models\Siswas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,7 @@ class SiswasController extends Controller
     public function index()
     {
         $data = Siswas::paginate(5);
-        return view('layouts.siswa.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 5);
+        return view('layouts.siswa.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -120,6 +121,12 @@ class SiswasController extends Controller
      */
     public function destroy(Siswas $siswa)
     {
+        $ortu = Orangtua::where('siswa_id', $siswa->id)->first();
+        
+        if ($ortu) {
+            $ortu->delete();
+        }
+
         $siswa->delete();
     
         return redirect()->route('siswa.index')

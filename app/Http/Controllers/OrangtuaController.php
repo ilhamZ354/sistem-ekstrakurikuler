@@ -23,7 +23,7 @@ class OrangtuaController extends Controller
             ->paginate(15);
     
         return view('layouts.orangtua.index', compact('data'))
-            ->with('i', (request()->input('page', 1) - 1) * 15); 
+            ->with('i', (request()->input('page', 1) - 1) * 10); 
     }
     
 
@@ -90,6 +90,7 @@ class OrangtuaController extends Controller
      */
     public function edit(Orangtua $orangtua)
     {
+        // return $orangtua->siswa_id;
         $siswa = Siswas::all();
         $namaSiswa = Siswas::where('id', $orangtua->siswa_id)->first();
         return view('layouts.orangtua.edit', compact('orangtua', 'siswa', 'namaSiswa'));
