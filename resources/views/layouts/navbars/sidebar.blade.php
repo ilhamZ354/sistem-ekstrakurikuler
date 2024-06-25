@@ -111,7 +111,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('kegiatan.index') }}">
                         <i class="ni ni-calendar-grid-58 text-primary"></i> {{ __('Kegiatan') }}
                     </a>
                 </li>

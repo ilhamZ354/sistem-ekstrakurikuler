@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('guru', GuruController::class);
 	Route::resource('siswa', SiswasController::class);
 	Route::resource('orangtua', OrangtuaController::class);
+	Route::resource('kegiatan', KegiatanController::class);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 

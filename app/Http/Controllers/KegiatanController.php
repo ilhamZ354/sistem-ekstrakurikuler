@@ -14,7 +14,8 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        //
+        $data = Kegiatan::paginate(5);
+        return view('layouts.kegiatan.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +25,7 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('layouts.kegiatan.input');
     }
 
     /**
@@ -35,7 +36,24 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|min:3',
+            'deskripsi' => 'required|string|max:255',
+            'tempat' => 'required|string|min:3',
+            'pembimbing' => 'required|string|min:3',
+        ]);
+
+        Kegiatan::create([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'tempat'=> $request->tempat,
+            'pembimbing' => $request->pembimbing,
+            'jumlah_peserta' => null,
+        ]);
+
+        return redirect()->route('kegiatan.index')
+        ->with('success', 'Data orangtua berhasil ditambahkan.');
+
     }
 
     /**
@@ -57,7 +75,7 @@ class KegiatanController extends Controller
      */
     public function edit(Kegiatan $kegiatan)
     {
-        //
+        return view('layouts.kegiatan.edit',compact('kegiatan'));
     }
 
     /**
@@ -69,7 +87,17 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, Kegiatan $kegiatan)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|min:3',
+            'deskripsi' => 'required|string|max:255',
+            'tempat' => 'required|string|min:3',
+            'pembimbing' => 'required|string|min:3',
+        ]);
+
+        $kegiatan->update($request->all());
+
+        return redirect()->route('kegiatan.index')
+        ->with('success', 'Data kegiatan berhasil diperbaiki');
     }
 
     /**
@@ -80,6 +108,9 @@ class KegiatanController extends Controller
      */
     public function destroy(Kegiatan $kegiatan)
     {
-        //
+        $kegiatan->delete();
+    
+        return redirect()->route('kegiatan.index')
+                        ->with('success','Kegiatan telah dihapus ');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSiswaKegiatanTable extends Migration
+class CreateSiswaKegiatansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSiswaKegiatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('siswa_kegiatan', function (Blueprint $table) {
+        Schema::create('siswa_kegiatans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained();
             $table->foreignId('kegiatan_id')->constrained()->onupdate('cascade')->ondelete('cascade');
@@ -27,6 +27,6 @@ class CreateSiswaKegiatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswa_kegiatan');
+        Schema::dropIfExists('siswa_kegiatans');
     }
 }
