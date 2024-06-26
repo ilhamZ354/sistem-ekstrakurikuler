@@ -27,8 +27,10 @@
             </form>
             @if(auth()->user()->level == 'admin') 
                 @include('layouts.navbars.sidebar')
-            @else
+            @elseif(auth()->user()->level == 'guru')
                 @include('layouts.navbars.sidebarGuru')
+            @else
+                @include('layouts.navbars.sidebarSiswa')
             @endif
         @endauth
         
