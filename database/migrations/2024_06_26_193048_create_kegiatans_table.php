@@ -19,6 +19,7 @@ class CreateKegiatansTable extends Migration
             $table->string('deskripsi');
             $table->string('pembimbing');
             $table->string('tempat');
+            $table->string('penanggungjawab');
             $table->integer('jumlah_peserta');
             $table->timestamps();
         });

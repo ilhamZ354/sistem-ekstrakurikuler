@@ -40,6 +40,7 @@ class KegiatanController extends Controller
             'nama' => 'required|string|min:3',
             'deskripsi' => 'required|string|max:255',
             'tempat' => 'required|string|min:3',
+            'penanggungjawab' => 'required|string|min:3',
             'pembimbing' => 'required|string|min:3',
         ]);
 
@@ -48,6 +49,7 @@ class KegiatanController extends Controller
             'deskripsi' => $request->deskripsi,
             'tempat'=> $request->tempat,
             'pembimbing' => $request->pembimbing,
+            'penanggungjawab' => $request->penanggungjawab,
             'jumlah_peserta' => null,
         ]);
 
@@ -92,6 +94,7 @@ class KegiatanController extends Controller
             'deskripsi' => 'required|string|max:255',
             'tempat' => 'required|string|min:3',
             'pembimbing' => 'required|string|min:3',
+            'penanggungjawab' => 'required|string|min:3',
         ]);
 
         $kegiatan->update($request->all());

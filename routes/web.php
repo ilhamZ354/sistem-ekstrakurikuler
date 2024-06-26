@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
@@ -30,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('siswa', SiswasController::class);
 	Route::resource('orangtua', OrangtuaController::class);
 	Route::resource('kegiatan', KegiatanController::class);
+	Route::resource('jadwal', JadwalController::class, ['except' => ['create']]);
+	Route::get('jadwal/create/{id}', [App\Http\Controllers\JadwalController::class, 'create'])->name('jadwal.create');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 

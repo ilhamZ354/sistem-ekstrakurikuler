@@ -50,6 +50,16 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="penanggungjawab" class="form-label">{{ __('PJ kegiatan') }}</label>
+                                    <input id="penanggungjawab" type="text" class="form-control @error('penanggungjawab') is-invalid @enderror" name="penanggungjawab" value="{{ old('penanggungjawab') }}" required autofocus>
+                                    @error('penanggungjawab')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="tempat" class="form-label">{{ __('Tempat kegiatan') }}</label>
                                     <input id="tempat" type="text" class="form-control @error('tempat') is-invalid @enderror" name="tempat" value="{{ old('tempat') }}" required autofocus>
                                     @error('tempat')

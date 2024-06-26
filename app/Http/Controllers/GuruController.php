@@ -69,6 +69,11 @@ class GuruController extends Controller
         return view('layouts.admin.guru.edit',compact('guru'));
     }
 
+
+    public function show(User $guru)
+    {
+        return $guru;
+    }
      /**
      * Update the specified resource in storage.
      *
