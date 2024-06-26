@@ -17,7 +17,7 @@ class SiswasController extends Controller
     public function index()
     {
         $data = Siswas::paginate(5);
-        return view('layouts.siswa.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
+        return view('layouts.admin.siswa.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -27,7 +27,7 @@ class SiswasController extends Controller
      */
     public function create()
     {
-        return view('layouts.siswa.input');
+        return view('layouts.admin.siswa.input');
     }
 
     /**
@@ -79,7 +79,7 @@ class SiswasController extends Controller
      */
     public function edit(Siswas $siswa)
     {
-        return view('layouts.siswa.edit',compact('siswa'));
+        return view('layouts.admin.siswa.edit',compact('siswa'));
     }
 
     /**

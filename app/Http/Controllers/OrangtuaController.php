@@ -22,7 +22,7 @@ class OrangtuaController extends Controller
             ->select('orangtuas.*', 'siswas.nama as siswa_nama', 'siswas.id as siswa_id')
             ->paginate(15);
     
-        return view('layouts.orangtua.index', compact('data'))
+        return view('layouts.admin.orangtua.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 10); 
     }
     
@@ -35,7 +35,7 @@ class OrangtuaController extends Controller
     public function create()
     {
         $siswa = Siswas::all();
-        return view('layouts.orangtua.input',['siswa'=>$siswa]);
+        return view('layouts.admin.orangtua.input',['siswa'=>$siswa]);
     }
 
     /**
@@ -93,7 +93,7 @@ class OrangtuaController extends Controller
         // return $orangtua->siswa_id;
         $siswa = Siswas::all();
         $namaSiswa = Siswas::where('id', $orangtua->siswa_id)->first();
-        return view('layouts.orangtua.edit', compact('orangtua', 'siswa', 'namaSiswa'));
+        return view('layouts.admin.orangtua.edit', compact('orangtua', 'siswa', 'namaSiswa'));
     }
 
     /**

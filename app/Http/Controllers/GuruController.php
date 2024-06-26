@@ -17,7 +17,7 @@ class GuruController extends Controller
     public function index(){
 
         $data = User::where('level', 'guru')->paginate(5);
-        return view('layouts.guru.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
+        return view('layouts.admin.guru.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
         /**
@@ -27,7 +27,7 @@ class GuruController extends Controller
      */
 
     public function create(){
-        return view('layouts.guru.input');
+        return view('layouts.admin.guru.input');
     }
 
     /**
@@ -66,7 +66,7 @@ class GuruController extends Controller
      */
     public function edit(User $guru)
     {
-        return view('layouts.guru.edit',compact('guru'));
+        return view('layouts.admin.guru.edit',compact('guru'));
     }
 
      /**

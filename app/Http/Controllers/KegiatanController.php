@@ -15,7 +15,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $data = Kegiatan::paginate(5);
-        return view('layouts.kegiatan.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
+        return view('layouts.admin.kegiatan.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -25,7 +25,7 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        return view('layouts.kegiatan.input');
+        return view('layouts.admin.kegiatan.input');
     }
 
     /**
@@ -75,7 +75,7 @@ class KegiatanController extends Controller
      */
     public function edit(Kegiatan $kegiatan)
     {
-        return view('layouts.kegiatan.edit',compact('kegiatan'));
+        return view('layouts.admin.kegiatan.edit',compact('kegiatan'));
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Dashboard')])
+@extends('layouts.app')
 
 @section('content')
     @include('users.partials.header', [
@@ -24,10 +24,12 @@
                     </thead>
                     <tbody class="list">
                         @foreach ($allUsers as $data)
+                        @if($data['lastSeen'] != null)
                         <tr>
                             <td>{{ $data['nama'] }}</td>
                             <td>{{ $data['lastSeen'] }}</td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>

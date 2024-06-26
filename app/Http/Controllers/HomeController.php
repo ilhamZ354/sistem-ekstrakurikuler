@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $allUsers = array_merge($guru, $siswa, $orangtua);
         $data = collect($allUsers)->sortByDesc('lastSeen')->values()->all();
-        
+
         return view('dashboard', compact('allUsers'));
     }
 }
