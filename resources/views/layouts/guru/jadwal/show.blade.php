@@ -54,17 +54,39 @@
                         </div>
                     </div>
                     <div class="card-body" style="max-height: 520px;">
+                        @if($jadwal=='')
                         <div class="align-items-start">
                             <p class="text-muted">Jadwal kegiatan ini belum dibuat!.</p>
                         </div>
+                        @else
+                        <div class="border-2 bg-secondary p-2">
+                            <span><i class="fas fa-users"></i> Pertemuan : {{ $jadwal->jumlah_pertemuan }} kali setiap bulan</span>
+                        </div>
+                        <div class="border-2 bg-secondary p-2 mt-2">
+                            <span><i class="ni ni-calendar-grid-58"></i> Hari : {{ $jadwal->hari }}</span>
+                        </div>
+                        <div class="border-2 bg-secondary p-2 mt-2">
+                            <span><i class="ni ni-time-alarm"></i> Pukul : {{ $jadwal->waktu }}</span>
+                        </div>
+                        @endif
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <button type="submit" class="btn btn-secondary"><a href="#" class="text-dark">Edit</a></button>
-                        <a href="{{ route('jadwal.create',$data->id) }}" onmouseover="moveRight(this)" onmouseout="moveLeft(this)">
-                            Buat jadwal >>
-                        </a>
-
+                        @if(isset($jadwal))
+                        <button type="submit" class="btn btn-secondary">
+                                <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="text-dark">Edit</a>
+                            </button>
+                            <form action="{{ route('jadwal.destroy', $jadwal->id, $data->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-warning">Delete</button>
+                            </form>
+                        @else
+                            <a href="{{ route('jadwal.create', $data->id) }}" onmouseover="moveRight(this)" onmouseout="moveLeft(this)">
+                                Buat jadwal >>
+                            </a>
+                        @endif
                     </div>
+
                 </div>
             </div>
         </div>

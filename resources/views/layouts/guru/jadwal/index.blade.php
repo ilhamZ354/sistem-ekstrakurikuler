@@ -38,8 +38,8 @@
                                 <td>{{ $value->tempat }}</td>
                                 <td>{{ $value->jumlah_peserta }}</td>
                                 <td class="text-center">
-                                    <div>
-                                    <a href="{{ route('jadwal.show', $value->id) }}">
+                                    <div class="bg-info">
+                                    <a href="{{ route('jadwal.show', $value->id) }}" class="text-white">
                                         <i class="fas fa-eye"></i>  jadwal
                                     </a>
                                     </div>

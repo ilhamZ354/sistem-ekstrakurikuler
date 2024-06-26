@@ -16,13 +16,13 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('jadwal.store') }}">
+                    <form method="POST" action="{{ route('jadwal.update', $jadwal->id) }}">
                                 @csrf
-
+                                @method('PUT')
                                 <div class="mb-3">
                                     <label for="jumlahPertemuan" class="form-label">{{ __('Jumlah Pertemuan Setiap Bulan') }}</label>
                                     <select id="jumlahPertemuan" class="form-control @error('jumlahPertemuan') is-invalid @enderror" name="jumlahPertemuan" required>
-                                        <option value="" disabled selected>Jumlah Pertemuan</option>
+                                        <option value="{{ $jadwal->jumlah_pertemuan }}" selected>{{ $jadwal->jumlah_pertemuan }} kali Pertemuan</option>
                                             <option value="1">1 kali pertemuan</option>
                                             <option value="2">2 kali pertemuan</option>
                                             <option value="3">3 kali pertemuan</option>
@@ -38,7 +38,7 @@
                                 <div class="mb-3">
                                     <label for="hari" class="form-label">{{ __('Setiap hari') }}</label>
                                     <select id="hari" class="form-control @error('hari') is-invalid @enderror" name="hari" required>
-                                        <option value="" disabled selected>pilih hari</option>
+                                        <option value="{{ $jadwal->hari }}" selected>{{ $jadwal->hari }}</option>
                                             <option value="senin">Senin</option>
                                             <option value="selasa">Selasa</option>
                                             <option value="rabu">Rabu</option>
@@ -56,7 +56,7 @@
 
                                 <div class="mb-3">
                                     <label for="waktu" class="form-label">{{ __('Waktu') }}</label>
-                                    <input id="waktu" type="time" class="form-control @error('waktu') is-invalid @enderror" name="waktu" value="{{ old('waktu') }}" required>
+                                    <input id="waktu" type="time" class="form-control @error('waktu') is-invalid @enderror" name="waktu" value="{{ $jadwal->waktu }}" required>
                                     @error('waktu')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -64,10 +64,8 @@
                                     @enderror
                                 </div>
 
-                                <input type="hidden" name="kegiatanId" value="{{ $param }}">
-
                                 <div class="mb-3">
-                                    <a href="{{ route('jadwal.show',$param) }}" class="btn btn-secondary">
+                                    <a href="{{ route('jadwal.show',$jadwal->kegiatan_id) }}" class="btn btn-secondary">
                                         {{ __('Kembali') }}
                                     </a>
                                     <button type="submit" class="btn btn-primary">
@@ -85,6 +83,7 @@
 @endsection
 
 @push('js')
+
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush

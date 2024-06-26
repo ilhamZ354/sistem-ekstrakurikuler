@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jadwal;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,22 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kegiatanId' => 'required|integer|min:1',
+            'jumlahPertemuan' => 'required|integer|min:1',
+            'hari' => 'required|string|min:3',
+            'waktu' => 'required',
+        ]);
+
+        Jadwal::create([
+            'kegiatan_id' => $request->kegiatanId,
+            'jumlah_pertemuan' => $request->jumlahPertemuan,
+            'hari' => $request->hari,
+            'waktu' =>$request->waktu,
+        ]);
+
+        return redirect()->route('jadwal.show',$request->kegiatanId)
+        ->with('success', 'Data jadwal berhasil ditambahkan.');
     }
 
     /**
@@ -51,7 +67,8 @@ class JadwalController extends Controller
     public function show($kegiatan)
     {
         $data = Kegiatan::where('id', $kegiatan)->first();
-        return view('layouts.guru.jadwal.show', compact('data'));
+        $jadwal = Jadwal::where('kegiatan_id', $kegiatan)->first();
+        return view('layouts.guru.jadwal.show', compact('data','jadwal'));
     }
 
     /**
@@ -60,9 +77,9 @@ class JadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Jadwal $jadwal)
     {
-        //
+        return view('layouts.guru.jadwal.edit',compact('jadwal'));
     }
 
     /**
@@ -72,9 +89,18 @@ class JadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Jadwal $jadwal)
     {
-        //
+        $request->validate([
+            'jumlahPertemuan' => 'required|integer|min:1',
+            'hari' => 'required|string|min:3',
+            'waktu' => 'required',
+        ]);
+
+        $jadwal->update($request->all());
+
+        return redirect()->route('jadwal.index')
+        ->with('success', 'Data kegiatan berhasil diperbaiki');
     }
 
     /**
@@ -83,8 +109,11 @@ class JadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Jadwal $jadwal)
     {
-        //
+        $jadwal->delete();
+
+        return redirect()->route('jadwal.index')
+                        ->with('success','Guru telah dihapus ');
     }
 }
