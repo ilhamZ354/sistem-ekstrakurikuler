@@ -17,6 +17,7 @@ class CreateSiswaKegiatansTable extends Migration
             $table->id();
             $table->foreignId('siswa_id')->constrained();
             $table->foreignId('kegiatan_id')->constrained()->onupdate('cascade')->ondelete('cascade');
+            $table->timestamps();
         });
     }
 

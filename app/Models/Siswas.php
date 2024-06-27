@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\SiswaKegiatan;
 
 class Siswas extends Authenticatable
 {
@@ -47,5 +48,9 @@ class Siswas extends Authenticatable
 
     public function orangtua(){
         return $this->hasOne(Orangtua::class);
+    }
+
+    public function kegiatan(){
+        return $this->hasMany(SiswaKegiatan::class);
     }
 }

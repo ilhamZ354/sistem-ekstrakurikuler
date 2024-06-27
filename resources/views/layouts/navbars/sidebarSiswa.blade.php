@@ -85,20 +85,25 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fas fa-user-run" style="color: #003285;"></i>
+                        <i class="ni ni-user-run" style="color: #003285;"></i>
                         <span class="nav-link-text" style="color: #003285;">{{ __('Ekstrakurikuler') }}</span>
                     </a>
 
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('kegiatan-siswa.index') }}">
                                     {{ __('Kegiatan') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     {{ __('Jadwal') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    {{ __('Nilai') }}
                                 </a>
                             </li>
                         </ul>

@@ -97,6 +97,7 @@
                                     @endif
                                 </div>
 
+                                <input type="hidden" name="pesan" value="profil">
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
@@ -144,6 +145,8 @@
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm New Password') }}" value="" required>
                                 </div>
 
+                                <input type="hidden" name="pesan" value="profil">
+                                
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Change password') }}</button>
                                 </div>
