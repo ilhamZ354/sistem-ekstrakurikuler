@@ -30,7 +30,7 @@
             @elseif(auth()->user()->level == 'guru')
                 @include('layouts.navbars.sidebarGuru')
             @endif
-            @endauth
+        @endauth
 
             @auth('siswas')
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -41,14 +41,12 @@
                 @endif
             @endauth
 
-        <div class="main-content">
-            @include('layouts.navbars.navbar')
-            @yield('content')
-        </div>
 
-        @guest()
-            @include('layouts.footers.guest')
-        @endguest
+    <div class="main-content">
+        @include('layouts.navbars.navbar')
+        @yield('content')
+    </div>
+
 
         <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

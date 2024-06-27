@@ -2,7 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-        'title' => __('Assalamualaikum') . ' '. auth()->user()->name,
+        'title' => __('Assalamualaikum') . ' '. (auth()->user()->name ?? auth()->guard('siswas')->user()->name),
         'description' => __('Ini adalah halaman profile anda, harap untuk selalu menggunakan data yang valid dan benar'),
         'class' => 'col-lg-7'
     ])   
@@ -23,10 +23,10 @@
                     <div class="card-body pt-0 pt-md-4 mt-4">
                         <div class="text-center mt-7">
                             <h3>
-                                {{ auth()->user()->name }}
+                                {{ (auth()->user()->name ?? auth()->guard('siswas')->user()->name)  }}
                             </h3>
                             <div class="h5 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>{{ auth()->user()->level }}
+                                <i class="ni location_pin mr-2"></i>{{ auth()->user()->level ?? 'Siswa' }}
                             </div>
                             <div class="h5 mt-4">
                                 <i class="ni business_briefcase-24 mr-2"></i>{{ __('Sistem Manajemen Ekstrakurikuler') }}
@@ -47,6 +47,109 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if(auth()->guard('siswas')->user())
+                        <form method="post" action="{{ route('siswa.update', auth()->guard('siswas')->user()->id) }}" autocomplete="off">
+                            @csrf
+                            @method('put')
+
+                            <h6 class="heading-small text-muted mb-4">{{ __('Data Pribadi') }}</h6>
+                            
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+
+
+                            <div class="pl-lg-4">
+                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ auth()->guard('siswas')->user()->name }}" required autofocus>
+
+
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-username">{{ __('Username') }}</label>
+                                    <input type="text" name="username" id="input-username" class="form-control form-control-alternative{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('username') }}" value="{{ auth()->guard('siswas')->user()->username }}" required autofocus>
+
+                                    @if ($errors->has('username'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('username') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
+                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ auth()->guard('siswas')->user()->email }}" required>
+
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                </div>
+                            </div>
+                        </form>
+                        <hr class="my-4" />
+                        <form method="post" action="{{ route('siswa.update', auth()->guard('siswas')->user()->id) }}" autocomplete="off">
+                            @csrf
+                            @method('put')
+
+                            <h6 class="heading-small text-muted mb-4">{{ __('Password') }}</h6>
+
+                            @if (session('password_status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('password_status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+
+                            <div class="pl-lg-4">
+                                <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-current-password">{{ __('Current Password') }}</label>
+                                    <input type="password" name="old_password" id="input-current-password" class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Password') }}" value="" required>
+                                    
+                                    @if ($errors->has('old_password'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('old_password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-password">{{ __('New Password') }}</label>
+                                    <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
+                                    
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm New Password') }}</label>
+                                    <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm New Password') }}" value="" required>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Change password') }}</button>
+                                </div>
+                            </div>
+                        </form>
+                        @elseif(auth()->user())
                         <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
                             @csrf
                             @method('put')
@@ -66,7 +169,8 @@
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ auth()->user()->name }}" required autofocus>
+
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -76,7 +180,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-username">{{ __('Username') }}</label>
-                                    <input type="text" name="username" id="input-username" class="form-control form-control-alternative{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('username') }}" value="{{ old('username', auth()->user()->username) }}" required autofocus>
+                                    <input type="text" name="username" id="input-username" class="form-control form-control-alternative{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="{{ __('username') }}" value="{{ auth()->user()->username  }}" required autofocus>
 
                                     @if ($errors->has('username'))
                                         <span class="invalid-feedback" role="alert">
@@ -86,7 +190,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
+                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ auth()->user()->email  }}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -147,6 +251,7 @@
                                 </div>
                             </div>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>
