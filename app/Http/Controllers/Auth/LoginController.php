@@ -18,9 +18,19 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::guard('web')->attempt($credentials)) {
-            return redirect()->intended('/home');
+            $user = Auth::guard('web')->user();
+            $user->lastSeen = now();
+            $user->save();
+
+            $token = $user->createToken('authToken')->plainTextToken;
+            return redirect()->intended('/home')->with('token', $token);
         } elseif (Auth::guard('siswas')->attempt($credentials)) {
-            return redirect()->intended('/home');
+            $siswa = Auth::guard('siswas')->user();
+            $siswa->lastSeen = now();
+            $siswa->save();
+
+            $token = $siswa->createToken('authToken')->plainTextToken;
+            return redirect()->intended('/home')->with('token', $token);
         }
 
         return redirect()->back()->withErrors(['login' => 'Invalid credentials']);

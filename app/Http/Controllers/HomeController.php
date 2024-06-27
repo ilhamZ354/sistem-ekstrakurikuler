@@ -24,13 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $guru = User::where('level', 'guru')->select('name as nama', 'lastSeen')->get()->toArray();
+        $guru = User::where('level', 'guru')->select('name', 'lastSeen')->get()->toArray();
         $siswa = Siswas::select('name', 'lastSeen')->get()->toArray();
-        $orangtua = Orangtua::select('nama', 'lastSeen')->get()->toArray();
+        $orangtua = Orangtua::select('nama as name', 'lastSeen')->get()->toArray();
 
         $allUsers = array_merge($guru, $siswa, $orangtua);
-        $data = collect($allUsers)->sortByDesc('lastSeen')->values()->all();
 
         return view('dashboard', compact('allUsers'));
+        // return $allUsers;
     }
 }

@@ -21,7 +21,7 @@
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
     </head>
     <body class="{{ $class ?? '' }}">
-        @auth()
+            @auth('web')
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
@@ -29,11 +29,18 @@
                 @include('layouts.navbars.sidebar')
             @elseif(auth()->user()->level == 'guru')
                 @include('layouts.navbars.sidebarGuru')
-            @else
-                @include('layouts.navbars.sidebarSiswa')
             @endif
-        @endauth
-        
+            @endauth
+
+            @auth('siswas')
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @if(auth()->guard('siswas')->check() && auth()->guard('siswas')->user()->name !== '')
+                    @include('layouts.navbars.sidebarSiswa')
+                @endif
+            @endauth
+
         <div class="main-content">
             @include('layouts.navbars.navbar')
             @yield('content')

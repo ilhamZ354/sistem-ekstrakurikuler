@@ -18,7 +18,6 @@ class Authenticate extends Middleware
             }
         }
 
-        // Check the student guard if the default web guard is not authenticated
         if (Auth::guard('web')->check()) {
             return $next($request);
         } elseif (Auth::guard('siswas')->check()) {

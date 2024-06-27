@@ -19,7 +19,7 @@ class OrangtuaController extends Controller
     {
         $data = DB::table('orangtuas')
             ->leftJoin('siswas', 'orangtuas.siswa_id', '=', 'siswas.id')
-            ->select('orangtuas.*', 'siswas.nama as siswa_nama', 'siswas.id as siswa_id')
+            ->select('orangtuas.*', 'siswas.name as siswa_nama', 'siswas.id as siswa_id')
             ->paginate(15);
     
         return view('layouts.admin.orangtua.index', compact('data'))

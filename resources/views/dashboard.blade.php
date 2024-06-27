@@ -27,7 +27,7 @@
                         @foreach ($allUsers as $data)
                         @if($data['lastSeen'] != null)
                         <tr>
-                            <td>{{ $data['nama'] }}</td>
+                            <td>{{ $data['name'] }}</td>
                             <td>{{ $data['lastSeen'] }}</td>
                         </tr>
                         @endif

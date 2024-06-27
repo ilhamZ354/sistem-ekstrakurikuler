@@ -104,11 +104,6 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-collection text-primary"></i> {{ __('Dashboard') }}
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
