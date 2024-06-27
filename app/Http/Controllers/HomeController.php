@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $guru = User::where('level', 'guru')->select('name as nama', 'lastSeen')->get()->toArray();
-        $siswa = Siswas::select('nama', 'lastSeen')->get()->toArray();
+        $siswa = Siswas::select('name', 'lastSeen')->get()->toArray();
         $orangtua = Orangtua::select('nama', 'lastSeen')->get()->toArray();
 
         $allUsers = array_merge($guru, $siswa, $orangtua);

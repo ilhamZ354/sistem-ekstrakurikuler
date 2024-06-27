@@ -38,7 +38,7 @@
                             @foreach ($data as $key => $value)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $value->nama }}</td>
+                                <td>{{ $value->name }}</td>
                                 <td>{{ $value->username }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->kelas }}</td>

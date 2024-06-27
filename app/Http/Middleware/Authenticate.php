@@ -3,19 +3,40 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
+    public function handle($request, Closure $next, ...$guards)
+    {
+        $guards = empty($guards) ? [null] : $guards;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return $next($request);
+            }
+        }
+
+        // Check the student guard if the default web guard is not authenticated
+        if (Auth::guard('web')->check()) {
+            return $next($request);
+        } elseif (Auth::guard('siswas')->check()) {
+            return $next($request);
+        }
+
+        return $this->unauthenticated($request, $guards);
+    }
+
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
             return route('login');
         }
+    }
+
+    protected function unauthenticated($request, array $guards)
+    {
+        abort(response()->json(['message' => 'Unauthenticated.'], 401));
     }
 }

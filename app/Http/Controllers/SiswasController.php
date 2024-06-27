@@ -39,7 +39,7 @@ class SiswasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|min:3',
+            'name' => 'required|string|min:3',
             'username' => 'required|string|min:5|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:5',
@@ -48,7 +48,7 @@ class SiswasController extends Controller
         ]);
 
         Siswas::create([
-            'nama' => $request->nama,
+            'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -92,7 +92,7 @@ class SiswasController extends Controller
     public function update(Request $request, Siswas $siswa)
     {
         $request->validate([
-            'nama' => 'required|string|min:3',
+            'name' => 'required|string|min:3',
             'username' => 'required|string|min:5|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:5',
