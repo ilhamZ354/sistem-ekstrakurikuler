@@ -11,7 +11,7 @@
             <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Data kegiatan</h3>
+                    <h3 class="mb-0">Daftar Kegiatan Ekstrakurikuler</h3>
                 </div>
                         </div>
                     </div>
