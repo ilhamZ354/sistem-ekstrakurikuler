@@ -52,6 +52,7 @@ class EkskulController extends Controller
             'kegiatan_id' => $request->kegiatan_id,
         ]);
 
+        
         return redirect()->route('kegiatan-siswa.index')->with('success', 'Pendaftaran berhasil berhasil.');
     }
 

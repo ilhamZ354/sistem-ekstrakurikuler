@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kegiatan;
 use App\Models\Jadwal;
+use App\Models\SiswaKegiatan;
 
 class JadwalSiswaController extends Controller
 {
@@ -50,6 +51,7 @@ class JadwalSiswaController extends Controller
     {
         $data = Kegiatan::where('id', $kegiatan)->first();
         $jadwal = Jadwal::where('kegiatan_id', $kegiatan)->first();
+
         return view('layouts.siswa.jadwal.show', compact('data','jadwal'));
     }
 

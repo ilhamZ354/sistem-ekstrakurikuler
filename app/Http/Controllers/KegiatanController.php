@@ -50,7 +50,7 @@ class KegiatanController extends Controller
             'tempat'=> $request->tempat,
             'pembimbing' => $request->pembimbing,
             'penanggungjawab' => $request->penanggungjawab,
-            'jumlah_peserta' => null,
+            'jumlah_peserta' => 0,
         ]);
 
         return redirect()->route('kegiatan.index')
