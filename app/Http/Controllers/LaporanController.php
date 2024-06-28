@@ -73,7 +73,7 @@ class LaporanController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Data kehadiran berhasil ditambahkan.');
+            return redirect()->back()->with('success', 'Data kehadiran berhasil disimpan.');
     }
     }
 
@@ -85,16 +85,9 @@ class LaporanController extends Controller
      */
     public function show($kegiatan)
     {
-        // $kegiatanSiswa = SiswaKegiatan::where('kegiatan_id',$kegiatan)->get();
         $keg = Kegiatan::where('id',$kegiatan)->first();
         $id = $kegiatan;
-        // // return $kegiatanSiswa;
 
-        // $siswaId = $kegiatanSiswa->pluck('siswa_id')->toArray();
-        // $data = Siswas::whereIn('id', $siswaId)->get();
-        // // return $data;
-
-        // return view('layouts.guru.kehadiran.show', compact('data','keg', 'id'))->with('i',(request()->input('page', 1) - 1) * 10);
         return view('layouts.guru.kehadiran.show', compact('keg','id'));
     }
 
