@@ -116,7 +116,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('laporankegiatan.index') }}">
                         <i class="ni ni-collection text-primary"></i> {{ __('Laporan') }}
                     </a>
                 </li>

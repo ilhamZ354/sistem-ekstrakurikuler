@@ -6,6 +6,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JadwalSiswaController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LaporanKegiatanController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('siswa', SiswasController::class);
 	Route::resource('orangtua', OrangtuaController::class);
 	Route::resource('kegiatan', KegiatanController::class);
+	Route::resource('laporankegiatan', LaporanKegiatanController::class);
 	Route::resource('jadwal', JadwalController::class, ['except' => ['create']]);
 	Route::resource('kegiatan-siswa', EkskulController::class);
 	Route::resource('jadwal-siswa', JadwalSiswaController::class);
