@@ -5,6 +5,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JadwalSiswaController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('guru', GuruController::class);
+	Route::resource('kehadiran', LaporanController::class);
 	Route::resource('siswa', SiswasController::class);
 	Route::resource('orangtua', OrangtuaController::class);
 	Route::resource('kegiatan', KegiatanController::class);

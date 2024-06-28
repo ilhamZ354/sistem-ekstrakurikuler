@@ -75,7 +75,7 @@
                                         <option value="" disabled selected>Pilih Siswa</option>
                                         <!-- Assuming you have a list of students to populate here -->
                                         @foreach($siswa as $siswa)
-                                            <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                                            <option value="{{ $siswa->id }}">{{ $siswa->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('siswa')

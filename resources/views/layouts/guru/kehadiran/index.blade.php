@@ -11,7 +11,7 @@
             <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Daftar Jadwal Kegiatan</h3>
+                    <h3 class="mb-0">Daftar Kegiatan</h3>
                 </div>
                         </div>
                     </div>
@@ -23,7 +23,6 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Nama Kegiatan</th>
                                     <th scope="col">Pembimbing</th>
-                                    <th scope="col">Tempat</th>
                                     <th scope="col">Jumlah Peserta</th>
                                     <th scope="col" class="marginRight:0">
                                     </th>
@@ -35,12 +34,11 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $value->nama }}</td>
                                 <td>{{ $value->pembimbing }}</td>
-                                <td>{{ $value->tempat }}</td>
                                 <td>{{ $value->jumlah_peserta }}</td>
                                 <td class="text-center">
-                                    <div class="bg-info">
-                                    <a href="{{ route('jadwal-siswa.show', $value->id) }}" class="text-white">
-                                        <i class="fas fa-eye"></i>  jadwal
+                                    <div class="bg-info p-2">
+                                    <a href="{{ route('kehadiran.show', $value->id) }}" class="text-white text-md">
+                                        <i class="fas fa-edit"></i>Kehadiran
                                     </a>
                                     </div>
                                 </td>

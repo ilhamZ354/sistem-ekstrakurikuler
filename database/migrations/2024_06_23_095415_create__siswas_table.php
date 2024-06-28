@@ -22,7 +22,7 @@ class CreateSiswasTable extends Migration
             $table->rememberToken();
             $table->string('kelas');
             $table->string('kode');
-            $table->dateTime('lastSeen');
+            $table->dateTime('lastSeen')->nullable();
             $table->timestamps();
         });
     }

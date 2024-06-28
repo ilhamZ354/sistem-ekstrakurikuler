@@ -73,9 +73,9 @@
                                 <div class="mb-3">
                                     <label for="siswa" class="form-label">{{ __('Nama siswa') }}</label>
                                     <select id="siswa" class="form-control @error('siswa') is-invalid @enderror" name="siswa">
-                                        <option value="{{ $orangtua->siswa_id }}" selected>{{ $namaSiswa->nama }}</option>
+                                        <option value="{{ $orangtua->siswa_id }}" selected>{{ $namaSiswa->name }}</option>
                                         @foreach($siswa as $siswa)
-                                            <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                                            <option value="{{ $siswa->id }}">{{ $siswa->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('siswa')

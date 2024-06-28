@@ -16,9 +16,11 @@ class CreateLaporansTable extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained()->onupdate('cascade')->ondelete('cascade');
-            $table->foreignId('jadwal_id')->constrained()->onupdate('cascade')->ondelete('cascade');
-            $table->boolean('isHadir');
-            $table->integer('nilai');
+            $table->string('bulan');
+            $table->integer('pertemuan');
+            $table->foreignId('kegiatan_id')->constrained()->onupdate('cascade')->ondelete('cascade');
+            $table->boolean('isHadir')->default(0);
+            $table->integer('nilai')->nullable();
             $table->timestamps();
         });
     }

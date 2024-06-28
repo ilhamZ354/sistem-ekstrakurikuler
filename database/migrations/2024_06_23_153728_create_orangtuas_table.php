@@ -23,7 +23,7 @@ class CreateOrangtuasTable extends Migration
             $table->string('no_wa');
             $table->rememberToken();
             $table->string('kodeSiswa');
-            $table->dateTime('lastSeen');
+            $table->dateTime('lastSeen')->nullable();
             $table->timestamps();
         });
     }

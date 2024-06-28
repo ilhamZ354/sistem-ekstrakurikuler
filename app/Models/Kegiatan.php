@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SiswaKegiatan;
+use App\Models\Laporan;
 use App\Models\Jadwal;
 
 class Kegiatan extends Model
@@ -26,5 +27,9 @@ class Kegiatan extends Model
 
     public function jadwal(){
         return $this->hasMany(Jadwal::class);
+    }
+
+    public function laporan(){
+        return $this->hasMany(Laporan::class);
     }
 }

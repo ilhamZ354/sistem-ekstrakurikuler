@@ -97,7 +97,7 @@
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('kehadiran.index') }}">
                                     {{ __('Kehadiran') }}
                                 </a>
                             </li>
