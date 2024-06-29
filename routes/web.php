@@ -8,6 +8,7 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LaporanKegiatanController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\NilaiSiswaController;
 use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('kehadiran', LaporanController::class);
 	Route::resource('penilaian', NilaiController::class);
 	Route::resource('siswa', SiswasController::class);
+	Route::resource('nilai', NilaiSiswaController::class);
 	Route::resource('orangtua', OrangtuaController::class);
 	Route::resource('kegiatan', KegiatanController::class);
 	Route::resource('laporankegiatan', LaporanKegiatanController::class);

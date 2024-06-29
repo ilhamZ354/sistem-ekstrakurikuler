@@ -13,7 +13,7 @@
                 <div class="col">
                     <h3 class="mb-0">Data Laporan</h3>
                 </div>
-                    <form action="{{ route('laporankegiatan.store')}}" method="POST">
+                    <form action="{{ route('nilai.store')}}" method="POST">
                         @csrf
                         <div class="col text-right">
                             <select name="bulan" class="form-control form-control-md text-md" style="display: inline-block; width: auto;">
@@ -31,6 +31,7 @@
                             <option value="November">November</option>
                             <option value="Desember">Desember</option>
                             </select>
+                            <input type="hidden" name="siswa_id" value="{{ auth()->guard('siswas')->user()->id }}">
                             <button type="submit" class="btn btn-info">Cari</button>
                         </div>
                         </form>
@@ -43,12 +44,8 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Nama kegiatan</th>
-                                    <th scope="col">Jumlah pertemuan</th>
-                                    <th scope="col">Pembimbing</th>
-                                    <th scope="col">Tempat kegiatan</th>
-                                    <th scope="col">Jumlah peserta</th>
-                                    <th scope="col">Total kehadiran</th>
-                                    <th scope="col">Rata-rata nilai</th>
+                                    <th scope="col">Pertemuan</th>
+                                    <th scope="col">Nilai</th>
                                     <th scope="col" class="marginRight:0">
                                     </th>
                                 </tr>
@@ -72,7 +69,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                   
+
                     </div>
                 </div>
             </div>

@@ -52,9 +52,6 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Sign in') }}</button>
                             </div>
-                            <div class="col text-center">
-                            <a href="{{ route('loginOrangtua') }}">Login sebagai orangtu</a>
-                            </div>
                         </form>
                 </div>
                 <!-- <div class="row mt-3">

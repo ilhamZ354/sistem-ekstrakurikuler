@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jadwal;
-use Illuminate\Http\Request;
-use App\Models\Kegiatan;
 use App\Models\Laporan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
-class LaporanKegiatanController extends Controller
+class NilaiSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +15,7 @@ class LaporanKegiatanController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin.laporan.index');
+        return view('layouts.siswa.nilai.index');
     }
 
     /**
@@ -39,51 +36,27 @@ class LaporanKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-
         $bulan = $request->bulan;
+
+        // return $bulan;
+
         $reqData = $request;
 
-        $data = DB::table('laporans')
+        $dataJoin = DB::table('laporans')
         ->join('kegiatans', 'laporans.kegiatan_id', '=', 'kegiatans.id')
         ->select(
             'kegiatans.id as kegiatan_id',
             'kegiatans.nama as kegiatan_nama',
-            'kegiatans.pembimbing as pembimbing',
-            'kegiatans.tempat as tempat',
-            'kegiatans.jumlah_peserta as total_peserta',
-            'laporans.bulan',
-            DB::raw('SUM(laporans.isHadir) as total_hadir'),
-            DB::raw('COUNT(DISTINCT laporans.pertemuan) as total_pertemuan'),
-            DB::raw('AVG(laporans.nilai) as average_nilai'),
+            'laporans.pertemuan as pertemuan',
+            'laporans.nilai as nilai',
         )
         ->where('laporans.bulan', $bulan)
-        ->groupBy('kegiatans.id', 'kegiatans.nama', 'kegiatans.pembimbing', 'kegiatans.tempat', 'kegiatans.jumlah_peserta', 'laporans.bulan')
+        ->groupBy('kegiatans.id', 'kegiatans.nama', 'laporans.bulan')
         ->get();
 
-        // return $data;
-
-
-
-        // $kegiatan = Kegiatan::with(['jadwal', 'laporan' => function ($query) use ($bulan) {
-        //     $query->where('bulan', $bulan);
-        // }])->get();
-
-        // // if(!$kegiatan){
-        // //     return 'tidak ada';
-        // // }
-
-        // $kegiatan = $kegiatan->map(function ($item) {
-        //     $item->jumlah_pertemuan = $item->jadwal->count();
-        //     $item->total_siswa = $item->laporan->sum('siswa_id');
-        //     $item->total_nilai = $item->laporan->sum('nilai');
-        //     return $item;
-        // });
-
-        // return $kegiatan;
-
-        return view('layouts.admin.laporan.index', compact('data', 'reqData'))->with('i',(request()->input('page', 1) - 1) * 10);
+        return $reqData;
     }
+
 
     /**
      * Display the specified resource.
@@ -91,7 +64,7 @@ class LaporanKegiatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         //
     }
