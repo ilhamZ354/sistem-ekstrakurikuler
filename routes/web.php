@@ -27,11 +27,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/orangtua', function () {
+    return view('auth.loginOrangtua');
+});
+
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('guru', GuruController::class);
 	Route::resource('kehadiran', LaporanController::class);

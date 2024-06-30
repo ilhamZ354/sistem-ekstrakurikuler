@@ -35,27 +35,25 @@ class NilaiSiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $bulan = $request->bulan;
+{
+    $bulan = $request->input('bulan');
+    $siswa_id = $request->input('siswa_id');
 
-        // return $bulan;
-
-        $reqData = $request;
-
-        $dataJoin = DB::table('laporans')
+    $dataJoin = DB::table('laporans')
         ->join('kegiatans', 'laporans.kegiatan_id', '=', 'kegiatans.id')
         ->select(
-            'kegiatans.id as kegiatan_id',
-            'kegiatans.nama as kegiatan_nama',
-            'laporans.pertemuan as pertemuan',
-            'laporans.nilai as nilai',
+            'kegiatans.nama as nama_kegiatan',
+            'laporans.pertemuan',
+            'laporans.nilai'
         )
         ->where('laporans.bulan', $bulan)
-        ->groupBy('kegiatans.id', 'kegiatans.nama', 'laporans.bulan')
+        ->where('laporans.siswa_id', $siswa_id)
         ->get();
 
-        return $reqData;
-    }
+    // return $dataJoin;
+    return view('layouts.siswa.nilai.index', compact('dataJoin'))->with('i',(request()->input('page', 1) - 1) * 10);;
+}
+
 
 
     /**

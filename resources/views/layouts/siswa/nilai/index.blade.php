@@ -51,17 +51,13 @@
                                 </tr>
                             </thead>
                             <tbody class="list">
-                                @if(isset($data))
-                                @foreach($data as $key=> $value)
+                                @if(isset($dataJoin))
+                                @foreach($dataJoin as $key=> $value)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $value->kegiatan_nama }}</td>
-                                        <td>{{ $value->total_pertemuan }}</td>
-                                        <td>{{ $value->pembimbing }}</td>
-                                        <td>{{ $value->tempat }}</td>
-                                        <td>{{ $value->total_peserta }}</td>
-                                        <td>{{ $value->total_hadir }}</td>
-                                        <td>{{ number_format($value->average_nilai, 2) }}</td>
+                                        <td>{{ $value->nama_kegiatan}}</td>
+                                        <td>{{ $value->pertemuan }}</td>
+                                        <td>{{ $value->nilai }}</td>
                                     </tr>
                                 @endforeach
                                 @endif
