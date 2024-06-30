@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function showLoginOrangtuaForm()
-    {
-        return view('auth.loginOrangtua');
-    }
-    
+
     public function showLoginForm()
     {
         return view('auth.login');
@@ -35,6 +31,22 @@ class LoginController extends Controller
             $siswa->save();
 
             $token = $siswa->createToken('authToken')->plainTextToken;
+            return redirect()->intended('/home')->with('token', $token);
+        }
+
+        return redirect()->back()->withErrors(['login' => 'Invalid credentials']);
+    }
+
+    public function loginOrangtua(Request $request)
+    {
+        $credentials = $request->only('kodeSiswa', 'password');
+
+        if (Auth::guard('orangtuas')->attempt($credentials)) {
+            $orangtua = Auth::guard('orangtuas')->user();
+            $orangtua->lastSeen = now();
+            $orangtua->save();
+
+            $token = $orangtua->createToken('authToken')->plainTextToken;
             return redirect()->intended('/home')->with('token', $token);
         }
 

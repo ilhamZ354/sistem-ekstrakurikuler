@@ -2,7 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-        'title' => __('Assalamualaikum') . ' '. (auth()->user()->name ?? auth()->guard('siswas')->user()->name
+        'title' => __('Assalamualaikum') . ' '. (auth()->user()->name ?? auth()->guard('siswas')->user()->name ?? auth()->guard('orangtuas')->user()->name
 ),
         'description' => __('Selamat datang di sistem manajemen ekstrakurikuler SMP IT ALKAFFAH'),
         'class' => 'col-lg-7'

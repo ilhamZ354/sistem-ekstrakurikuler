@@ -14,19 +14,19 @@
                         </div>
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
-                    <form role="form" method="POST" action="{{ route('login') }}">
+                    <form role="form" method="POST" action="{{ route('login.orangtua.submit') }}">
                             @csrf
 
-                            <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }} mb-3">
+                            <div class="form-group{{ $errors->has('kodeSiswa') ? ' has-danger' : '' }} mb-3">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="NIP/NISN" type="text" name="username" value="{{ old('username') }}" value="12345" required autofocus>
+                                    <input class="form-control{{ $errors->has('kodeSiswa') ? ' is-invalid' : '' }}" placeholder="kode siswa" type="text" name="kodeSiswa" value="{{ old('kodeSiswa') }}" value="" required autofocus>
                                 </div>
-                                @if ($errors->has('username'))
+                                @if ($errors->has('kodeSiswa'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                        <strong>{{ $errors->first('kodeSiswa') }}</strong>
                                     </span>
                                 @endif
                             </div>

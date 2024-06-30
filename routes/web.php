@@ -13,6 +13,8 @@ use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,16 +25,18 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/orangtua', function () {
+Route::get('/parents', function () {
     return view('auth.loginOrangtua');
 });
 
+Route::post('/login/orangtua', [App\Http\Controllers\Auth\LoginController::class, 'loginOrangtua'])->name('login.orangtua.submit');;
+
 Auth::routes();
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');

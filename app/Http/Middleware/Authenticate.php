@@ -22,6 +22,8 @@ class Authenticate extends Middleware
             return $next($request);
         } elseif (Auth::guard('siswas')->check()) {
             return $next($request);
+        } elseif (Auth::guard('orangtuas')->check()) {
+            return $next($request);
         }
 
         return $this->unauthenticated($request, $guards);
@@ -29,7 +31,7 @@ class Authenticate extends Middleware
 
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
             return route('login');
         }
     }

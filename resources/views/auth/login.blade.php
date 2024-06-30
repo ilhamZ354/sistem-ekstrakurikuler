@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Sign in') }}</button>
                             </div>
                             <div class="col text-center">
-                            <a href="/orangtua">Login sebagai orangtu</a>
+                            <a href="/parents">Login sebagai orangtu</a>
                             </div>
                         </form>
                 </div>
