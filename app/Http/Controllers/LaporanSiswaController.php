@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jadwal;
-use Illuminate\Http\Request;
-use App\Models\Kegiatan;
 use App\Models\Laporan;
+use App\Models\Orangtua;
+use App\Models\Siswas;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
-class LaporanKegiatanController extends Controller
+class LaporanSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,7 @@ class LaporanKegiatanController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin.laporan.index');
+        return view('layouts.orangtua.laporan.index');
     }
 
     /**
@@ -39,29 +38,7 @@ class LaporanKegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-
-        $bulan = $request->bulan;
-        $reqData = $request;
-
-        $data = DB::table('laporans')
-        ->join('kegiatans', 'laporans.kegiatan_id', '=', 'kegiatans.id')
-        ->select(
-            'kegiatans.id as kegiatan_id',
-            'kegiatans.nama as kegiatan_nama',
-            'kegiatans.pembimbing as pembimbing',
-            'kegiatans.tempat as tempat',
-            'kegiatans.jumlah_peserta as total_peserta',
-            'laporans.bulan',
-            DB::raw('SUM(laporans.isHadir) as total_hadir'),
-            DB::raw('COUNT(DISTINCT laporans.pertemuan) as total_pertemuan'),
-            DB::raw('AVG(laporans.nilai) as average_nilai'),
-        )
-        ->where('laporans.bulan', $bulan)
-        ->groupBy('kegiatans.id', 'kegiatans.nama', 'kegiatans.pembimbing', 'kegiatans.tempat', 'kegiatans.jumlah_peserta', 'laporans.bulan')
-        ->get();
-
-        return view('layouts.admin.laporan.index', compact('data', 'reqData'))->with('i',(request()->input('page', 1) - 1) * 10);
+        //
     }
 
     /**
@@ -70,9 +47,27 @@ class LaporanKegiatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        //
+        // return $id;
+        $ortu = Orangtua::where('id', $id)->first();
+
+        $data = DB::table('laporans')
+        ->join('kegiatans', 'laporans.kegiatan_id', '=', 'kegiatans.id')
+        ->select(
+            'kegiatans.id as kegiatan_id',
+            'kegiatans.nama as kegiatan_nama',
+            'laporans.pertemuan',
+            'laporans.bulan',
+            'laporans.isHadir',
+            'laporans.nilai'
+        )
+        ->where('laporans.siswa_id', $ortu->siswa_id)
+        ->groupBy('kegiatans.id', 'kegiatans.nama', 'laporans.pertemuan', 'laporans.bulan', 'laporans.isHadir', 'laporans.nilai')
+        ->get();
+
+        // return $data;
+        return view('layouts.orangtua.laporan.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);;
     }
 
     /**

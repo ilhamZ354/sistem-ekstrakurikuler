@@ -29,6 +29,8 @@
                 @include('layouts.navbars.sidebar')
             @elseif(auth()->user()->level == 'guru')
                 @include('layouts.navbars.sidebarGuru')
+            @elseif(auth()->guard('orangtuas')->user())
+                @include('layouts.navbars.sidebarOrangtua')
             @endif
         @endauth
 
@@ -38,6 +40,15 @@
                 </form>
                 @if(auth()->guard('siswas')->check() && auth()->guard('siswas')->user()->name !== '')
                     @include('layouts.navbars.sidebarSiswa')
+                @endif
+            @endauth
+
+            @auth('orangtuas')
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @if(auth()->guard('orangtuas')->check() && auth()->guard('orangtuas')->user()->nama !== '')
+                    @include('layouts.navbars.sidebarOrangtua')
                 @endif
             @endauth
 
