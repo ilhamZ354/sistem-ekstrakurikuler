@@ -27,7 +27,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIK</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">No_WA</th>
+                                    <th scope="col">Id telegram</th>
                                     <th scope="col">Nama siswa</th>
                                     <th scope="col">Kode Siswa</th>
                                     <th scope="col">Terakhir dilihat</th>
@@ -42,7 +42,7 @@
                                 <td>{{ $value->nama }}</td>
                                 <td>{{ $value->username }}</td>
                                 <td>{{ $value->email }}</td>
-                                <td>{{ $value->email }}</td>
+                                <td>{{ $value->id_telegram }}</td>
                                 <td>{{ $value->siswa_nama }}</td>
                                 <td>{{ $value->kodeSiswa }}</td>
                                 <td>{{ $value->lastSeen }}</td>

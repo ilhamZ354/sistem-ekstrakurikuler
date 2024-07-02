@@ -51,7 +51,7 @@ class OrangtuaController extends Controller
             'username' => 'required|string|min:5',
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:5',
-            'no_wa' => 'required|string|min:10',
+            'id_telegram' => 'required|string|min:10',
             'siswa' => 'required|min:1',
         ]);
 
@@ -62,7 +62,7 @@ class OrangtuaController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'no_wa' => $request->no_wa,
+            'id_telegram' => $request->id_telegram,
             'siswa_id' =>$request->siswa,
             'kodeSiswa' => $siswa->kode,
             'lastSeen' => null
@@ -110,7 +110,7 @@ class OrangtuaController extends Controller
             'nama' => 'required|string|min:3',
             'username' => 'required|string|min:5',
             'email' => 'required|string|email|max:255',
-            'no_wa' => 'required|string|min:10',
+            'id_telegram' => 'required|string|min:10',
             'siswa' => 'required|min:1',
         ]);
 

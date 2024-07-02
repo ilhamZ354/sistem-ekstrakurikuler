@@ -22,7 +22,7 @@
                                             <div class="form-group">
                                                 <label for="select-bulan">Bulan</label>
                                                 <select class="form-control" id="select-bulan" name="bulan" required>
-                                                    <option value="{{ isset($dataReq->bulan) ? $dataReq->bulan : '' }}" selected>{{ isset($dataReq->bulan) ? $dataReq->bulan : 'Bulan' }}</option>
+                                                <option value="{{ isset($dataReq->bulan) ? $dataReq->bulan : '' }}" selected>{{ isset($dataReq->bulan) ? $dataReq->bulan : 'Bulan' }}</option>
                                                     <option value="Januari">Januari</option>
                                                     <option value="Februari">Februari</option>
                                                     <option value="Maret">Maret</option>

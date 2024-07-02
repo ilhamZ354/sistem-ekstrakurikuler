@@ -19,7 +19,7 @@ class Orangtua extends Authenticatable
         'email',
         'username',
         'siswa_id',
-        'no_wa',
+        'id_telegram',
         'password',
         'kodeSiswa',
     ];

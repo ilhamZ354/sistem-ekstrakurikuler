@@ -50,9 +50,9 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="no_wa" class="form-label">{{ __('No. WA') }}</label>
-                                    <input id="no_wa" type="text" class="form-control @error('no_wa') is-invalid @enderror" name="no_wa" value="{{ old('no_wa') }}" required>
-                                    @error('no_wa')
+                                    <label for="id_telegram" class="form-label">{{ __('Id telegram') }}</label>
+                                    <input id="id_telegram" type="text" class="form-control @error('id_telegram') is-invalid @enderror" name="id_telegram" value="{{ old('id_telegram') }}" required>
+                                    @error('id_telegram')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

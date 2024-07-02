@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use App\Models\Kegiatan;
+use App\Models\Orangtua;
 use App\Models\SiswaKegiatan;
 use App\Models\Siswas;
+use App\Notifications\TelegramNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class LaporanController extends Controller
 {
@@ -19,6 +22,7 @@ class LaporanController extends Controller
     {
         $data = Kegiatan::paginate(5);
         return view('layouts.guru.kehadiran.index', compact('data'))->with('i',(request()->input('page', 1) - 1) * 10);
+        // return view('layouts.guru.kehadiran.index');
     }
 
     /**
@@ -55,7 +59,8 @@ class LaporanController extends Controller
             // return $param;
 
             return view('layouts.guru.kehadiran.show', compact('data','keg', 'id','dataReq', 'param'))->with('i',(request()->input('page', 1) - 1) * 10);
-        }else{
+        }
+        else{
         $request->validate([
             'hadir' => 'required',
             'bulan' => 'required|string',
@@ -71,6 +76,27 @@ class LaporanController extends Controller
                 'kegiatan_id' => $request->kegiatan_id,
                 'isHadir' =>true,
             ]);
+        }
+        
+        foreach ($request->hadir as $key => $value) {
+            $ortuList = Orangtua::where('siswa_id', $value)
+                ->select('nama', 'id_telegram')
+                ->get();
+        
+            $siswa = Siswas::where('id', $value)
+                ->select('name')
+                ->first();
+        
+            $kegiatan = Kegiatan::where('id', $request->kegiatan_id)
+                ->select('nama')
+                ->first();
+        
+            foreach ($ortuList as $ortu) {
+                $message = "Assalamualaikum, anak anda {$siswa->name} telah hadir pada kegiatan {$kegiatan->nama}";
+        
+                Notification::route('telegram', $ortu->id_telegram)
+                ->notify(new TelegramNotification($message, $ortu));
+            }
         }
 
             return redirect()->back()->with('success', 'Data kehadiran berhasil disimpan.');
