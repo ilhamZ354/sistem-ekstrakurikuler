@@ -25,13 +25,13 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{{ asset('argon') }}/img/theme/gambar-slide1.png" class="d-block w-100 img-fluid" alt="...">
+                <img src="{{ asset('argon') }}/img/theme/panah.jpg" class="d-block w-100 img-fluid" alt="...">
               </div>
               <div class="carousel-item ">
-                <img src="{{ asset('argon') }}/img/theme/gambar-slide2.png" class="d-block w-100 img-fluid" alt="..." >
+                <img src="{{ asset('argon') }}/img/theme/panah2.jpg" class="d-block w-100 img-fluid" alt="..." >
               </div>
               <div class="carousel-item">
-                <img src="{{ asset('argon') }}/img/theme/gambar-slide3.png" class="d-block w-100 img-fluid" alt="..." >
+                <img src="{{ asset('argon') }}/img/theme/tenismeja.jpg" class="d-block w-100 img-fluid" alt="..." >
               </div>
               
             </div>

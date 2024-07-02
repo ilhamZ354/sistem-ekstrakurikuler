@@ -20,7 +20,7 @@
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/brand/favicon.png">
+                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/profil-image2.jpg">
                         </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name ?? auth()->guard('siswas')->user()->name ?? auth()->guard('orangtuas')->user()->name
