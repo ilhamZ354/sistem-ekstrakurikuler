@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 
 class LoginController extends Controller
 {
@@ -24,6 +27,7 @@ class LoginController extends Controller
             $user->save();
 
             $token = $user->createToken('authToken')->plainTextToken;
+            Alert::success('Login berhasil', 'Selamat datang di Sismakul');
             return redirect()->intended('/home')->with('token', $token);
         } elseif (Auth::guard('siswas')->attempt($credentials)) {
             $siswa = Auth::guard('siswas')->user();
@@ -31,10 +35,13 @@ class LoginController extends Controller
             $siswa->save();
 
             $token = $siswa->createToken('authToken')->plainTextToken;
+            Alert::success('Login berhasil', 'Selamat datang di Sismakul');
             return redirect()->intended('/home')->with('token', $token);
+            ;
         }
 
-        return redirect()->back()->withErrors(['login' => 'Invalid credentials']);
+        Alert::error('Login gagal', 'Terdapat kesalahan saat login');
+        return redirect()->back();
     }
 
     public function loginOrangtua(Request $request)
@@ -47,10 +54,12 @@ class LoginController extends Controller
             $orangtua->save();
 
             $token = $orangtua->createToken('authToken')->plainTextToken;
+            Alert::success('Login berhasil', 'Selamat datang di Sismakul');
             return redirect()->intended('/home')->with('token', $token);
         }
 
-        return redirect()->back()->withErrors(['login' => 'Invalid credentials']);
+        Alert::error('Login gagal', 'Terdapat kesalahan saat login');
+        return redirect()->back();
     }
 
     public function logout(Request $request)

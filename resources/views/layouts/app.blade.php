@@ -56,6 +56,7 @@
     <div class="main-content">
         @include('layouts.navbars.navbar')
         @yield('content')
+        @include('sweetalert::alert')
     </div>
 
 

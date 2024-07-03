@@ -50,7 +50,7 @@
                                     <form action="{{ route('guru.destroy',$value->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')  
-                                    <button type="submit" class="dropdown-item">Delete</button>
+                                    <button type="submit" class="dropdown-item" data-confirm-delete="true">Delete</button>
                                     </form>
                                     </div>
                                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GuruController extends Controller
 {
@@ -54,7 +55,7 @@ class GuruController extends Controller
             'level' => 'guru',
             'lastSeen' => null
         ]);
-
+        Alert::success('Berhasil', 'Data guru berhasil ditambahkan');
         return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan.');
     }
 
@@ -112,6 +113,9 @@ class GuruController extends Controller
      */
     public function destroy(User $guru)
     {
+        $title = 'Hapus guru!';
+        $text = "Apa kamu yakin ingin menghapus guru?";
+        confirmDelete($title, $text);
         $guru->delete();
     
         return redirect()->route('guru.index')

@@ -14,7 +14,7 @@ use App\Http\Controllers\OrangtuaController;
 use App\Http\Controllers\SiswasController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +40,7 @@ Auth::routes();
 
 
 Route::group(['middleware' => 'auth'], function () {
+	Route::get('/cetak-pdf', [PDFController::class, 'cetakPDF'])->name('cetak.pdf');
 	Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('guru', GuruController::class);

@@ -34,6 +34,13 @@
                             <button type="submit" class="btn btn-info">Cari</button>
                         </div>
                         </form>
+                        @if(isset($data))
+                        <form action="{{ route('cetak.pdf') }}" method="GET">
+                                @csrf
+                                <input type="hidden" name="bulan" value="{{ $reqData->bulan }}">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-print"></i></button>
+                        </form>
+                        @endif
                         </div>
                     </div>
                     <div class="table-responsive" style="max-height: 520px">
