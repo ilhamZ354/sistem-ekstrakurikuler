@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jadwal;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JadwalController extends Controller
 {
@@ -111,9 +112,13 @@ class JadwalController extends Controller
      */
     public function destroy(Jadwal $jadwal)
     {
+        $title = 'Hapus jadwal!';
+        $text = "Apa kamu yakin ingin menghapus jadwal?";
+        confirmDelete($title, $text);
+
         $jadwal->delete();
 
         return redirect()->route('jadwal.index')
-                        ->with('success','Guru telah dihapus ');
+                        ->with('success','Jadwal telah dihapus ');
     }
 }

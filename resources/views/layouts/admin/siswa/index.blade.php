@@ -51,10 +51,10 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <a class="dropdown-item" href="{{ route('siswa.edit',$value->id) }}">Edit</a>
-                                    <form action="{{ route('siswa.destroy',$value->id) }}" method="POST">
+                                    <form action="{{ route('siswa.destroy',$value->id) }}" method="POST" class="delete-form">
                                     @csrf
                                     @method('DELETE')  
-                                    <button type="submit" class="dropdown-item">Delete</button>
+                                    <button type="submit" class="dropdown-item btn-batal">Delete</button>
                                     </form>
                                     </div>
                                 </div>
@@ -75,6 +75,28 @@
 @endsection
 
 @push('js')
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-batal').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    const form = this.closest('.delete-form');
+                    Swal.fire({
+                        title: 'Hapus Siswa!',
+                        text: 'Apa kamu yakin ingin menghapus?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Tidak!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush

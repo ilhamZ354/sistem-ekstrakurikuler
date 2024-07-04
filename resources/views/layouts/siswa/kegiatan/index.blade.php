@@ -43,10 +43,10 @@
                                         @endphp
 
                                         @if($paramValue)
-                                            <form action="{{ route('kegiatan-siswa.destroy', $value->id) }}" method="POST" style="display:inline;">
+                                            <form action="{{ route('kegiatan-siswa.destroy', $value->id) }}" method="POST" style="display:inline;" class="delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-dark">Batal</button>
+                                                <button type="submit" class="btn btn-dark btn-batal">Batal</button>
                                             </form>
                                         @else
                                             <form action="{{ route('kegiatan-siswa.store') }}" method="POST" style="display:inline;">
@@ -73,7 +73,31 @@
     </div>
 @endsection
 
+
 @push('js')
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-batal').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    const form = this.closest('.delete-form');
+                    Swal.fire({
+                        title: 'Batalkan!',
+                        text: 'Apa kamu yakin ingin membatalkan?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, batalkan!',
+                        cancelButtonText: 'Tidak!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 @endpush

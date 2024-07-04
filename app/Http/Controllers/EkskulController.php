@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kegiatan;
 use App\Models\SiswaKegiatan;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EkskulController extends Controller
 {
@@ -99,6 +100,10 @@ class EkskulController extends Controller
     public function destroy($siswaKegiatan)
     {
         $hapus = SiswaKegiatan::where('kegiatan_id',$siswaKegiatan)->first();
+        $title = 'Batalkan!';
+        $text = "Apa kamu yakin ingin membatalkan?";
+        confirmDelete($title, $text);
+
         $hapus->delete();
     
         return redirect()->route('kegiatan-siswa.index')

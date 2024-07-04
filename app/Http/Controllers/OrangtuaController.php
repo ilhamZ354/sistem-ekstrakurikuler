@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Orangtua;
 use App\Models\Siswas;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrangtuaController extends Controller
 {

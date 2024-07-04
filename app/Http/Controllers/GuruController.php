@@ -116,7 +116,8 @@ class GuruController extends Controller
         $title = 'Hapus guru!';
         $text = "Apa kamu yakin ingin menghapus guru?";
         confirmDelete($title, $text);
-        $guru->delete();
+
+        $guru->delete();   
     
         return redirect()->route('guru.index')
                         ->with('success','Guru telah dihapus ');

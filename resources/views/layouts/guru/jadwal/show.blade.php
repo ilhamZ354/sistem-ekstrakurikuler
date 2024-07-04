@@ -75,10 +75,10 @@
                         <button type="submit" class="btn btn-secondary">
                                 <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="text-dark">Edit</a>
                             </button>
-                            <form action="{{ route('jadwal.destroy', $jadwal->id, $data->id) }}" method="POST">
+                            <form action="{{ route('jadwal.destroy', $jadwal->id, $data->id) }}" method="POST" class="delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-warning">Delete</button>
+                                <button type="submit" class="btn btn-warning btn-batal">Delete</button>
                             </form>
                         @else
                             <a href="{{ route('jadwal.create', $data->id) }}" onmouseover="moveRight(this)" onmouseout="moveLeft(this)">
@@ -97,6 +97,28 @@
 @endsection
 
 @push('js')
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.btn-batal').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    const form = this.closest('.delete-form');
+                    Swal.fire({
+                        title: 'Hapus Jadwal!',
+                        text: 'Apa kamu yakin ingin menghapus?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Tidak!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 <script>
         function moveRight(element) {
             element.style.transform = "translateX(10px)";

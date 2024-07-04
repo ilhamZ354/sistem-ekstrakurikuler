@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KegiatanController extends Controller
 {
@@ -54,7 +55,7 @@ class KegiatanController extends Controller
         ]);
 
         return redirect()->route('kegiatan.index')
-        ->with('success', 'Data orangtua berhasil ditambahkan.');
+        ->with('success', 'Kegiatan berhasil ditambahkan.');
 
     }
 
