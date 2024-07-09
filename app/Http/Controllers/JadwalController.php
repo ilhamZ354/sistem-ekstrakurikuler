@@ -101,7 +101,7 @@ class JadwalController extends Controller
         $jadwal->update($request->all());
 
         return redirect()->route('jadwal.index')
-        ->with('success', 'Data kegiatan berhasil diperbaiki');
+        ->with('success', 'Data jadwal berhasil diperbaiki');
     }
 
     /**

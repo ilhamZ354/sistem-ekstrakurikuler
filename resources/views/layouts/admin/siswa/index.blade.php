@@ -75,6 +75,8 @@
 @endsection
 
 @push('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.btn-batal').forEach(button => {

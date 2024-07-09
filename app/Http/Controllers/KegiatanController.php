@@ -110,11 +110,12 @@ class KegiatanController extends Controller
      * @param  \App\Models\Kegiatan  $kegiatan
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Kegiatan $kegiatan)
     {
         $kegiatan->delete();
     
         return redirect()->route('kegiatan.index')
-                        ->with('success','Kegiatan telah dihapus ');
+        ->with('success','Kegiatan telah dihapus ');
     }
 }
